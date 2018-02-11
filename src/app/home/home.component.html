@@ -9,7 +9,7 @@
     </a>
   </div>
   <div class="flex-header-small">
-    <a href="http://www.instagram.com/{{ instagramUser.username }}">
+    <a href="http://www.instagram.com/{{ instagramUser?.username }}">
       INSTAGRAM
     </a>
   </div>
@@ -21,14 +21,14 @@
       <div class="parent">
         <div class="child">
           <div class="big">
-            <img src="{{ feedItem.image_versions2.candidates[0].url }}" class="instaimage"/>
+            <img src="{{ feedItem?.image_versions2?.candidates[0]?.url }}" class="instaimage"/>
           </div>
           <div class="small">
-            <img src="{{ feedItem.image_versions2.candidates[0].url }}" class="instaimage"/>
+            <img src="{{ feedItem?.image_versions2?.candidates[0]?.url }}" class="instaimage"/>
           </div>
         </div>
         <div class="child">
-          {{ feedItem.caption.text | uppercase }}
+          {{ feedItem?.caption?.text | uppercase }}
         </div>
       </div>
     </div>

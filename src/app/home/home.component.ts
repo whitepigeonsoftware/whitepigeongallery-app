@@ -14,6 +14,9 @@ export class HomeComponent implements OnInit {
   instagramUser: any;
   feed: any[];
 
+  instagramUserSubscription: any;
+  feedSubscription: any;
+
   constructor(public instagramService: InstagramService) {}
 
   ngOnInit() {
@@ -21,8 +24,13 @@ export class HomeComponent implements OnInit {
     this.getFeed();
   }
 
+  ngOnDestroy() {
+    this.instagramUserSubscription.unsubscribe();
+    this.feedSubscription.unsubscribe();
+  }
+
   getInstagramUser() {
-    this.instagramService.getInstagramUser()
+    this.instagramUserSubscription = this.instagramService.getInstagramUser()
       .subscribe(
         instagramUser => this.instagramUser = instagramUser,
         error => this.errorMessage = <any>error
@@ -30,7 +38,7 @@ export class HomeComponent implements OnInit {
   }
 
   getFeed() {
-    this.instagramService.getFeed()
+    this.feedSubscription = this.instagramService.getFeed()
       .subscribe(
         feed => this.feed = feed,
         error => this.errorMessage = <any>error
